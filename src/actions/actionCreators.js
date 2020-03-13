@@ -1,4 +1,4 @@
-import { ADD_REMINDER, REMOVE_REMINDER, SHOW_ALL, SHOW_ACTIVE, SHOW_COMPLETED} from './actionTypes';
+import { LOAD_REMINDER, ADD_REMINDER, REMOVE_REMINDER, SHOW_ALL, SHOW_ACTIVE, SHOW_COMPLETED} from './actionTypes';
 
 let todoId = 11111;
 
@@ -18,7 +18,7 @@ export const deleteReminder = (id) => ({
 });
 
 export const showOnlineReminder = (list) => ({
-	type: SHOW_ALL,
+	type: LOAD_REMINDER,
 	payload: {
 		list
 	}
@@ -30,4 +30,8 @@ export const showCompletedOnlineReminder = () => ({
 
 export const showActiveOnlineReminder = () => ({
 	type: SHOW_ACTIVE,
+})
+
+export const showAllOnlineReminder = () => ({
+	type: SHOW_ALL,
 })

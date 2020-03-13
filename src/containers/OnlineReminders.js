@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { showOnlineReminder, showActiveOnlineReminder, showCompletedOnlineReminder } from '../actions/actionCreators';
+import { showAllOnlineReminder, showOnlineReminder, showActiveOnlineReminder, showCompletedOnlineReminder } from '../actions/actionCreators';
 
 
 function OnlineReminders(props) {
@@ -39,16 +39,16 @@ function OnlineReminders(props) {
 			<a href="/#" onClick={() => setIsShown(true)}>Click here</a>
 			{isShown && <h4>Here are the list of available random reminders below:</h4>}
 			{isLoading && <p>Wait!!! Loading reminders for you ...</p>}
-			{console.log('here ut coem', props)}
 			<div className="reminder-filter">
-				<button type="button" className="btn btn-showAll">All</button>
+				<button type="button" className="btn btn-showAll"
+				  onClick={() => props.showAllOnlineReminder()}>All</button>
 				<button type="button" className="btn btn-showActive"
 					onClick={() => props.showActiveOnlineReminder()}>Active</button>
 				<button type="button" className="btn btn-showCompleted"
 					onClick={() => props.showCompletedOnlineReminder()}>Completed</button>
 			</div>
 			<ul className="reminder-list">
-				{props.onlineReminderList.length > 0 && props.onlineReminderList[0].map(listItem => (
+				{props.onlineReminderList.length > 0 && props.onlineReminderList.map(listItem => (
 					<li key={listItem.userId}>
 						<p className="listItem">{listItem.title}</p>
 						<div className="actions">
@@ -68,6 +68,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => {
 	return bindActionCreators({
+		showAllOnlineReminder,
 		showOnlineReminder,
 		showActiveOnlineReminder,
 		showCompletedOnlineReminder
