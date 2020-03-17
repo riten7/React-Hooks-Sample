@@ -9,4 +9,4 @@ const filterType = (state = SHOW_ALL, action) => {
     }
 }
 
-export default filterType;
+export default filterType;;

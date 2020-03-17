@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { deleteReminder } from '../actions/actionCreators';
 import { bindActionCreators } from 'redux';
-//import ListItemReminder from './ListItemReminder';
 
 function ListReminders(props) {
 	const { reminderList } = props;
@@ -14,7 +13,6 @@ function ListReminders(props) {
 							<li key={reminder.id}>
 								<p className="listItem">{reminder.reminderText}</p>
 								<div className="actions">
-									{/* <button type="button" className="btn btn-warning">Edit</button> */}
 									<button type="button" className="btn btn-delete"
 										onClick={() => props.deleteReminder(reminder.id)}>Delete</button>
 								</div>
@@ -27,7 +25,7 @@ function ListReminders(props) {
 }
 
 const mapStateToProps = state => ({
-	reminderList: state.AddReminderReducer //need to change the name later while import
+	reminderList: state.AddReminderReducer
 })
 
 const mapDispatchToProps = (dispatch) => {
