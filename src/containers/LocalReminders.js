@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { deleteReminder } from '../actions/actionCreators';
 import { bindActionCreators } from 'redux';
 
-function ListReminders(props) {
+function LocalReminders(props) {
 	const { reminderList } = props;
 	return (
 		reminderList.length !== 0 ?
@@ -41,4 +41,4 @@ const mapDispatchToProps = (dispatch) => {
 //     return { todos: state.todos }; 
 // };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ListReminders);
+export default connect(mapStateToProps, mapDispatchToProps)(LocalReminders);

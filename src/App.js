@@ -2,7 +2,7 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import AddReminder from './containers/AddReminder';
-import ListReminders from './containers/ListReminders';
+import LocalReminders from './containers/LocalReminders';
 import OnlineReminders from './containers/OnlineReminders';
 
 function App() {
@@ -12,7 +12,7 @@ function App() {
         <h2>Reminder App Using React Hooks</h2>
         <div className="reminder-app">
           <AddReminder />
-          <ListReminders />
+          <LocalReminders />
         </div>
         <div className="online-reminder-app">
           <OnlineReminders />

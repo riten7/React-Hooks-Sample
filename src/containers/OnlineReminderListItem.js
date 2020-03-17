@@ -1,10 +1,11 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 function OnlineReminderListItem(props) {
+	const onlineReminderList = useSelector(state => getFilteredReminders(state.OnlineReminderReducer, state.FilterReducer))
     return(
         <ul className="reminder-list">
-				{props.onlineReminderList.length > 0 && props.onlineReminderList.map(listItem => (
+				{onlineReminderList.length > 0 && onlineReminderList.map(listItem => (
 					<li key={listItem.userId}>
 						<p className="listItem">{listItem.title}</p>
 						<div className="actions">
@@ -30,8 +31,4 @@ const getFilteredReminders = (reminderList, filter) => {
 	}
 }
 
-const mapStateToProps = state => ({
- 	onlineReminderList: getFilteredReminders(state.OnlineReminderReducer, state.FilterReducer)   
-});
-
-export default connect(mapStateToProps) (OnlineReminderListItem);
+export default OnlineReminderListItem;
