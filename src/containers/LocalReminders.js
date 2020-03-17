@@ -20,7 +20,7 @@ function LocalReminders(props) {
 					)
 					)}
 				</ul>
-			</div> : <div className="empty-data" role="alert">You will see your set reminders here.. Try add a reminder above !!!</div>
+			</div> : <div className="empty-data" role="alert">Try add a reminder to see !!!</div>
 	)
 }
 

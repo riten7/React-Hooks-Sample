@@ -1,4 +1,4 @@
-import { LOAD_REMINDER, SHOW_ALL, SHOW_ACTIVE, SHOW_COMPLETED } from '../actions/actionTypes';
+import { LOAD_REMINDER } from '../actions/actionTypes';
 
 const initialData = [];
 

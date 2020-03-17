@@ -8,7 +8,6 @@ import { getUniqueList } from '../util/filterList';
 function OnlineReminders() {
 	const [error, setError] = useState(false);
 	const [isLoading, setIsLoading] = useState(false);
-	const [isShown, setIsShown] = useState(false);
 
 	const dispatch = useDispatch();
 
@@ -23,20 +22,24 @@ function OnlineReminders() {
 	}, [dispatch]);
 
 	useEffect(() => {
-		if (isShown) {
-			setIsLoading(true)
-			fetchData();
-		}
-	}, [fetchData, isShown]);
+
+		setIsLoading(true)
+		fetchData();
+
+	}, [fetchData]);
 
 	return (
 		<div className="reminder-container">
-			<a href="/#" onClick={() => setIsShown(true)}>Click here</a>
-			{!isLoading && !error && isShown && <h4>Here are the list of available random reminders below:</h4>}
+			{/* <a href="/#" onClick={() => setIsShown(true)}>Click here</a> */}
 			{isLoading && !error && <p>Wait!!! Loading reminders for you ...</p>}
 			{!isLoading && error && <p>Error occured</p>}
-			<OnlineReminderFilter />
-			<OnlineReminderListItem />
+			{!isLoading && !error &&
+				<>
+					<h4>Here is the list of available random reminders below:</h4>
+					<OnlineReminderFilter />
+					<OnlineReminderListItem />
+				</>
+			}
 		</div>
 	);
 }
