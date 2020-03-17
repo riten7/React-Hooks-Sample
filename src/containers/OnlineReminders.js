@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { showOnlineReminder } from '../actions/actionCreators';
 import OnlineReminderFilter from './OnlineReminderFilter';
 import OnlineReminderListItem from './OnlineReminderListItem';
-import getUniqueList from '../util/filterList';
+import { getUniqueList } from '../util/filterList';
 
 function OnlineReminders() {
 	const [error, setError] = useState(false);
@@ -23,9 +23,9 @@ function OnlineReminders() {
 	}, [dispatch]);
 
 	useEffect(() => {
-		if (isShown){
+		if (isShown) {
 			setIsLoading(true)
-		  fetchData();
+			fetchData();
 		}
 	}, [fetchData, isShown]);
 

@@ -10,14 +10,14 @@ function LocalReminders(props) {
 			<div className="reminder-container">
 				<ul className="reminder-list">
 					{reminderList.map(reminder => (
-							<li key={reminder.id}>
-								<p className="listItem">{reminder.reminderText}</p>
-								<div className="actions">
-									<button type="button" className="btn btn-delete"
-										onClick={() => props.deleteReminder(reminder.id)}>Delete</button>
-								</div>
-							</li>
-						)
+						<li key={reminder.id}>
+							<p className="listItem">{reminder.reminderText}</p>
+							<div className="actions">
+								<button type="button" className="btn btn-delete"
+									onClick={() => props.deleteReminder(reminder.id)}>Delete</button>
+							</div>
+						</li>
+					)
 					)}
 				</ul>
 			</div> : <div className="empty-data" role="alert">You will see your set reminders here.. Try add a reminder above !!!</div>

@@ -7,11 +7,12 @@ function AddReminder() {
 	const dispatch = useDispatch();
 
 	const saveReminder = useCallback(() => {
-		if(remindertext){
-		 	dispatch(addReminder(remindertext))
+		if (remindertext) {
+			dispatch(addReminder(remindertext))
 			setReminderText('')
-		}}, [dispatch, remindertext])
-	
+		}
+	}, [dispatch, remindertext])
+
 	const onReminderChange = useCallback(e => setReminderText(e.target.value), []);
 
 	return (
