@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { showAllOnlineReminder, showOnlineReminder, showActiveOnlineReminder, showCompletedOnlineReminder } from '../actions/actionCreators';
+import { showAllOnlineReminder, showOnlineReminder, showActiveOnlineReminder, showCompletedOnlineReminder, setFilter } from '../actions/actionCreators';
+import { SHOW_ALL, SHOW_ACTIVE, SHOW_COMPLETED} from '../actions/actionTypes';
 
 
 function OnlineReminders(props) {
@@ -40,12 +41,15 @@ function OnlineReminders(props) {
 			{isShown && <h4>Here are the list of available random reminders below:</h4>}
 			{isLoading && <p>Wait!!! Loading reminders for you ...</p>}
 			<div className="reminder-filter">
+				{/* props.showAllOnlineReminder() */}
 				<button type="button" className="btn btn-showAll"
-				  onClick={() => props.showAllOnlineReminder()}>All</button>
+				  onClick={() => props.setFilter(SHOW_ALL)}>All</button>
+				{/* props.showActiveOnlineReminder() */}
 				<button type="button" className="btn btn-showActive"
-					onClick={() => props.showActiveOnlineReminder()}>Active</button>
+					onClick={() => props.setFilter(SHOW_ACTIVE)}>Active</button>
+				{/* props.showCompletedOnlineReminder() */}
 				<button type="button" className="btn btn-showCompleted"
-					onClick={() => props.showCompletedOnlineReminder()}>Completed</button>
+					onClick={() => props.setFilter(SHOW_COMPLETED)}>Completed</button>
 			</div>
 			<ul className="reminder-list">
 				{props.onlineReminderList.length > 0 && props.onlineReminderList.map(listItem => (
@@ -62,8 +66,21 @@ function OnlineReminders(props) {
 	);
 }
 
+const getFilteredReminders = (reminderList, filter) => {
+	switch(filter) {
+		case SHOW_ALL:
+			return reminderList;
+		case SHOW_ACTIVE:
+			return reminderList.flat().filter(item => !item.completed);
+		case SHOW_COMPLETED:
+			return reminderList.flat().filter(item => item.completed);
+		default:
+			return;
+	}
+}
+
 const mapStateToProps = state => ({
-	onlineReminderList: state.OnlineReminderReducer
+	onlineReminderList: getFilteredReminders(state.OnlineReminderReducer, state.FilterReducer)
 });
 
 const mapDispatchToProps = dispatch => {
@@ -71,7 +88,8 @@ const mapDispatchToProps = dispatch => {
 		showAllOnlineReminder,
 		showOnlineReminder,
 		showActiveOnlineReminder,
-		showCompletedOnlineReminder
+		showCompletedOnlineReminder,
+		setFilter
 	}, dispatch);
 };
 

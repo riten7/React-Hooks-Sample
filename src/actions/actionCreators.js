@@ -1,4 +1,4 @@
-import { LOAD_REMINDER, ADD_REMINDER, REMOVE_REMINDER, SHOW_ALL, SHOW_ACTIVE, SHOW_COMPLETED} from './actionTypes';
+import { LOAD_REMINDER, ADD_REMINDER, REMOVE_REMINDER, SHOW_ALL, SHOW_ACTIVE, SHOW_COMPLETED, SET_FILTER} from './actionTypes';
 
 let todoId = 11111;
 
@@ -22,7 +22,14 @@ export const showOnlineReminder = (list) => ({
 	payload: {
 		list
 	}
-})
+});
+
+export const setFilter = (filter) => ({
+	type: SET_FILTER,
+	payload: {
+	  filter
+	}
+});
 
 export const showCompletedOnlineReminder = () => ({
 	type: SHOW_COMPLETED,
